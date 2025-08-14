@@ -63,3 +63,9 @@ This is a full-stack application using **CQRS with Mediator pattern** on the bac
 - **Backend**: Use primary constructors, nameof operator for HTTP methods, shortest possible namespaces
 - **Frontend**: Prefer Shadcn/ui components, use Tailwind classes, leverage RTK Query hooks for all API calls
 - **Both**: Maintain strong typing throughout, no magic strings for API endpoints
+
+### RTK Query Cache Management
+- **Enhanced Endpoints**: Extend auto-generated RTK Query endpoints in `web/src/store/api/enhanced/` 
+- **Tag System**: Use `providesTags` for queries and `invalidatesTags` for mutations to manage cache invalidation
+- **Pattern**: Queries that fetch data should `providesTags`, mutations that modify data should `invalidatesTags` with the same tag
+- **Example**: See `web/src/store/api/enhanced/todos.ts` for reference implementation using 'TODO' tag

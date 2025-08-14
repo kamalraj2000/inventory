@@ -4,12 +4,8 @@ const config: ConfigFile = {
   schemaFile: '../PythonApi/openapi.json',
   apiFile: './src/store/api/empty-api.ts',
   apiImport: 'emptySplitApi',
-  outputFiles: {
-    './src/store/api/generated/todos.ts': {
-      filterEndpoints: [/Todo/]
-    },
-  },
-  exportName: 'moviesApi',
+  outputFile: './src/store/api/generated/products.ts',
+  exportName: 'productsApi',
   hooks: true,
 }
 
