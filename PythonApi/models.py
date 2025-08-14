@@ -1,17 +1,65 @@
 from pydantic import BaseModel
 from typing import Optional
+from decimal import Decimal
 
 
-class TodoItem(BaseModel):
+# Product Category Models
+class ProductCategory(BaseModel):
     id: int
-    title: Optional[str] = None
-    isComplete: bool = False
+    name: str
+    description: Optional[str] = None
 
 
-class CreateTodoCommand(BaseModel):
-    title: str
+class CreateProductCategoryCommand(BaseModel):
+    name: str
+    description: Optional[str] = None
 
 
-class UpdateTodoCommand(BaseModel):
-    title: str
-    isComplete: bool
+class UpdateProductCategoryCommand(BaseModel):
+    name: str
+    description: Optional[str] = None
+
+
+# Product Models
+class Product(BaseModel):
+    id: int
+    sku: str
+    name: str
+    description: Optional[str] = None
+    category_id: Optional[int] = None
+    category: Optional[ProductCategory] = None
+    stock: int = 0
+    price: Decimal
+
+    class Config:
+        json_encoders = {
+            Decimal: float
+        }
+
+
+class CreateProductCommand(BaseModel):
+    sku: str
+    name: str
+    description: Optional[str] = None
+    category_id: Optional[int] = None
+    stock: int = 0
+    price: Decimal
+
+    class Config:
+        json_encoders = {
+            Decimal: float
+        }
+
+
+class UpdateProductCommand(BaseModel):
+    sku: str
+    name: str
+    description: Optional[str] = None
+    category_id: Optional[int] = None
+    stock: int
+    price: Decimal
+
+    class Config:
+        json_encoders = {
+            Decimal: float
+        }
